@@ -1,6 +1,6 @@
 # laravelListing
 
-A listing and sublisting system using laravel framework
+A system containing lists and sublists using the laravel framework
 
 Here you'll find three pages where you can get a list and a sublist. Additionally, you can add itens, edit itens and delete any of the items in those lists.
 
