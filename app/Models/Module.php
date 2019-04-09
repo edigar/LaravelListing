@@ -8,7 +8,7 @@ class Module extends Model
 {
     protected $fillable = ['title', 'description'];
 
-    public function saveModel($data)
+    public function saveModule($data)
     {
         $this->title = $data['title'];
         $this->description = $data['description'];

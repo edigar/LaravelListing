@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Module;
+use App\Models\Activity;
 
 class ModuleController extends Controller
 {
@@ -16,6 +17,11 @@ class ModuleController extends Controller
     public function index()
     {
         $modules = Module::all();
+
+        foreach($modules as $key => $module) {
+            $modules[$key]['countActivities'] = Activity::where('module_id', $module->id)->count();
+        }
+
         return view('modules.index',compact('modules',$modules));
     }
 
@@ -44,8 +50,8 @@ class ModuleController extends Controller
             'status' => 'required'
         ]);
        
-        $module->saveModel($data);
-        return redirect('/modules')->with('success', 'New Module has been created! Wait sometime to get resolved');
+        $module->saveModule($data);
+        return redirect('/modules')->with('message', 'Novo Módulo criado com sucesso!');
     }
 
     /**
@@ -79,7 +85,7 @@ class ModuleController extends Controller
         $data['id'] = $id;
         $module->updateModule($data);
 
-        return redirect('/modules')->with('success', 'Module has been updated!!');
+        return redirect('/modules')->with('message', 'Módulo atualizado!!');
     }
 
     /**
@@ -93,6 +99,6 @@ class ModuleController extends Controller
         $module = Module::find($id);
         $module->delete();
 
-        return redirect('/modules')->with('success', 'Module has been deleted!!');
+        return redirect('/modules')->with('message', 'Module deletado!!');
     }
 }

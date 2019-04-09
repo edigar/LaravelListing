@@ -15,10 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/create/ticket','TicketController@create');
+//Routes for modules:
 Route::resource('modules', 'ModuleController');
 Route::get('/create/module','ModuleController@create');
 Route::post('/create/module','ModuleController@store');
 Route::get('edit/module/{id}','ModuleController@edit');
 Route::patch('edit/module/{id}','ModuleController@update');
 Route::delete('/delete/module/{id}','ModuleController@destroy');
+
+//Routes for activities:
+Route::resource('/activities/{module_id}/', 'ActivityController');
+Route::get('/create/activity/{module_id}','ActivityController@create');
+Route::post('/create/activity','ActivityController@store');
+Route::get('edit/activity/{id}','ActivityController@edit');
+Route::patch('edit/activity/{id}','ActivityController@update');
+Route::delete('/delete/activity/{id}','ActivityController@destroy');

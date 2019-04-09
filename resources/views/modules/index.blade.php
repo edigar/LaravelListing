@@ -15,7 +15,6 @@
                 <table class="table table-hover">
                 <thead class="thead-dark">
                     <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Título</th>
                     <th scope="col">Descrição</th>
                     <th scope="col">Data de Cadastro</th>
@@ -27,7 +26,6 @@
                 <tbody>
                     @foreach($modules as $module)
                     <tr>
-                    <th scope="row">{{$module->id}}</th>
                     <td>{{$module->title}}</td>
                     <td>{{$module->description}}</td>
                     <td>{{$module->created_at->toFormattedDateString()}}</td>
@@ -44,7 +42,7 @@
                                 <input type="submit" class="btn btn-danger" value="Delete"/>
                         </form>&nbsp;
                         <a href="{{ URL::to('activities/' . $module->id) }}">
-                            <button type="button" class="btn btn-info">Atividades (?)</button>
+                            <button type="button" class="btn btn-info">Atividades ({{$module->countActivities}})</button>
                         </a>
                     </div>
                     </td>
